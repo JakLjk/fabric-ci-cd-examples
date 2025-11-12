@@ -1,0 +1,6 @@
+# GitHub Actions example
+- name: Deploy Fabric Resources
+  run: |
+    fab auth login -u ${{ secrets.CLIENT_ID }} -p ${{ secrets.CLIENT_SECRET }}
+    fab mkdir ProductionWorkspace.Workspace || exit 1
+    fab job run DataPipeline.DataPipeline --timeout 3600
