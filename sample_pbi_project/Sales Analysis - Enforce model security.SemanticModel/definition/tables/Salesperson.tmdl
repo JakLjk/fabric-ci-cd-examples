@@ -1,0 +1,56 @@
+table Salesperson
+	isHidden
+	lineageTag: 3ecaf368-df82-4334-8b32-d761a9f7e800
+
+	column EmployeeKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ff89ff1f-a2d5-4432-8dd7-f258b043358a
+		summarizeBy: count
+		sourceColumn: EmployeeKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7c0eeefe-7dc7-43b6-abc2-f0791b750e24
+		summarizeBy: none
+		sourceColumn: SalesTerritoryKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column UPN
+		dataType: string
+		isHidden
+		lineageTag: 6ae98a0f-26db-49e0-9d5b-05f566eee145
+		summarizeBy: none
+		sourceColumn: UPN
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Salesperson = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(SqlServerInstance, SqlServerDatabase),
+				    dbo_DimEmployee = Source{[Schema="dbo",Item="DimEmployee"]}[Data],
+				    #"Removed Other Columns" = Table.SelectColumns(dbo_DimEmployee,{"EmployeeKey", "SalesTerritoryKey", "EmailAddress"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Other Columns",{{"EmailAddress", "UPN"}})
+				in
+				    #"Renamed Columns"
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

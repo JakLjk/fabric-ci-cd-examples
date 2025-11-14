@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Sales Analysis - Enforce model security"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "118d2564-2163-405a-b290-4f7b68d86032"
+  }
+}

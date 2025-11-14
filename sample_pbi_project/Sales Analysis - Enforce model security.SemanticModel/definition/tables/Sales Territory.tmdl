@@ -1,0 +1,68 @@
+table 'Sales Territory'
+	lineageTag: 4a29e29c-695e-40f9-b03f-7ff42451909d
+
+	column SalesTerritoryKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 18273210-10b1-4883-a45d-5cdf8bd04b92
+		summarizeBy: none
+		sourceColumn: SalesTerritoryKey
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column Region
+		dataType: string
+		lineageTag: 6eab9366-489f-4db5-8bc7-24a8d3e599a1
+		isDefaultLabel
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: cf185e2c-3681-444a-966b-1f256b3a37e4
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Group
+		dataType: string
+		lineageTag: c17a8f5a-c709-4db3-a526-71abe3e29291
+		summarizeBy: none
+		sourceColumn: Group
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Sales Territories'
+		lineageTag: 0ae8a35b-f095-4939-b545-6ff7b3a087e1
+
+		level Group
+			lineageTag: 8e34119e-7cea-401f-9f47-f56bae3edafb
+			column: Group
+
+		level Country
+			lineageTag: 3d7afafc-210e-46c6-a2a9-38efde4100d7
+			column: Country
+
+		level Region
+			lineageTag: 1f8989ae-65ce-4df9-af19-4d9611a3ddd8
+			column: Region
+
+	partition 'Sales Territory-86e24776-e692-45a5-9e92-91af2c36c1a6' = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database(SqlServerInstance, SqlServerDatabase),
+				    dbo_DimSalesTerritory = Source{[Schema="dbo",Item="DimSalesTerritory"]}[Data],
+				    #"Removed Other Columns" = Table.SelectColumns(dbo_DimSalesTerritory,{"SalesTerritoryKey", "SalesTerritoryRegion", "SalesTerritoryCountry", "SalesTerritoryGroup"}),
+				    #"Renamed Columns" = Table.RenameColumns(#"Removed Other Columns",{{"SalesTerritoryRegion", "Region"}, {"SalesTerritoryCountry", "Country"}, {"SalesTerritoryGroup", "Group"}})
+				in
+				    #"Renamed Columns"
+
+	annotation PBI_ResultType = Table
+
