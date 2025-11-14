@@ -1,0 +1,15 @@
+{
+    "id": "7e5fd8ac-61fe-496f-af1a-074a22b66304",
+    "type": "Workspace",
+    "name": "test-pool",
+    "nodeFamily": "MemoryOptimized",
+    "nodeSize": "Small",
+    "autoScale": {
+        "enabled": true,
+        "minNodeCount": 1,
+        "maxNodeCount": 1
+    },
+    "dynamicExecutorAllocation": {
+        "enabled": false
+    }
+}

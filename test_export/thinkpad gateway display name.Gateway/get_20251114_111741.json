@@ -1,0 +1,14 @@
+{
+    "displayName": "thinkpad gateway display name",
+    "numberOfMemberGateways": 1,
+    "loadBalancingSetting": "Failover",
+    "allowCloudConnectionRefresh": false,
+    "allowCustomConnectors": false,
+    "publicKey": {
+        "exponent": "AQAB",
+        "modulus": "wkEN0j6hsOMKdOmEkj2OMiCRsk5Ce6Ct5b1CCtQQ5ia9GjQI/Fs85BNvNUGnSeVglI/FUVd395VEYr6OTPk6vyyiV3OxesMBlsiaw/zAzn65AGYP8FP7xYBsyUrSinky76PCJJIS2MbDlHlEzTD3gKnXvcKQ+OjckBSzeMRO2LjWvbQ9a93hN5nq7/xrGF8lynE379uGkGWU33ukxhPiRvHQ5d/itJAEAk0TxnmhxHlZ9zOYvVxfggeuOnO6WSqaPrpbEApYS9Iknxm3+tKMdPIDfiF9X07jMpEbYON3NLtqcslzw9ZBE8gsevg3LzZ5bbsCsAr/iyZku4spbf+IiQ=="
+    },
+    "version": "3000.290.3",
+    "id": "a7e6ae93-77cb-4954-8b79-7672f07405a2",
+    "type": "OnPremises"
+}

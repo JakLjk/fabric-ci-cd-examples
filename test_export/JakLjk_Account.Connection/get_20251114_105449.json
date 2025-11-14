@@ -1,0 +1,18 @@
+{
+    "allowConnectionUsageInGateway": false,
+    "allowUsageInUserControlledCode": false,
+    "id": "876dfc33-868f-4ca3-9aed-40dbc7bf565d",
+    "displayName": "JakLjk_Account",
+    "connectivityType": "ShareableCloud",
+    "connectionDetails": {
+        "path": "https://github.com/JakLjk/fabric-ci-cd-learn",
+        "type": "GitHubSourceControl"
+    },
+    "privacyLevel": "Private",
+    "credentialDetails": {
+        "credentialType": "Key",
+        "singleSignOnType": "None",
+        "connectionEncryption": "NotEncrypted",
+        "skipTestConnection": false
+    }
+}

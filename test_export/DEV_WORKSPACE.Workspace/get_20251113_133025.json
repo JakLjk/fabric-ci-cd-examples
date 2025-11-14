@@ -1,0 +1,68 @@
+{
+    "id": "0b757bbc-b963-4071-9c9e-b2799e4ba796",
+    "displayName": "DEV_WORKSPACE",
+    "description": "",
+    "type": "Workspace",
+    "capacityId": "5c731379-6067-4886-b744-b1d0a059fa7e",
+    "capacityRegion": "UK South",
+    "oneLakeEndpoints": {
+        "blobEndpoint": "https://uksouth-onelake.blob.fabric.microsoft.com",
+        "dfsEndpoint": "https://uksouth-onelake.dfs.fabric.microsoft.com"
+    },
+    "capacityAssignmentProgress": "Completed",
+    "managedPrivateEndpoints": [],
+    "sparkSettings": {
+        "automaticLog": {
+            "enabled": true
+        },
+        "highConcurrency": {
+            "notebookInteractiveRunEnabled": true,
+            "notebookPipelineRunEnabled": false
+        },
+        "pool": {
+            "customizeComputeEnabled": true,
+            "defaultPool": {
+                "name": "Starter Pool",
+                "type": "Workspace",
+                "id": "00000000-0000-0000-0000-000000000000"
+            },
+            "starterPool": {
+                "maxNodeCount": 10,
+                "maxExecutors": 9
+            }
+        },
+        "environment": {
+            "runtimeVersion": "1.3"
+        },
+        "job": {
+            "conservativeJobAdmissionEnabled": false,
+            "sessionTimeoutInMinutes": 20
+        }
+    },
+    "roleAssignments": [
+        {
+            "id": "16613002-dc7d-42a3-97ba-f3bff4d6b7eb",
+            "principal": {
+                "id": "16613002-dc7d-42a3-97ba-f3bff4d6b7eb",
+                "displayName": "Jakub Lejk",
+                "type": "User",
+                "userDetails": {
+                    "userPrincipalName": "jakub@lejk.uk"
+                }
+            },
+            "role": "Contributor"
+        },
+        {
+            "id": "3f2a6148-dff7-4a6b-a1a6-a7b9762341f6",
+            "principal": {
+                "id": "3f2a6148-dff7-4a6b-a1a6-a7b9762341f6",
+                "displayName": "testeusz",
+                "type": "User",
+                "userDetails": {
+                    "userPrincipalName": "testeusz@lejk.uk"
+                }
+            },
+            "role": "Admin"
+        }
+    ]
+}

@@ -1,0 +1,12 @@
+[
+    "displayName",
+    "numberOfMemberGateways",
+    "loadBalancingSetting",
+    "allowCloudConnectionRefresh",
+    "allowCustomConnectors",
+    "publicKey.exponent",
+    "publicKey.modulus",
+    "version",
+    "id",
+    "type"
+]
