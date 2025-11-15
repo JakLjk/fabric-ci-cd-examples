@@ -1,5 +1,6 @@
 key_value_replace:
   - find_key: "$.metadata.displayName"
     replace_value:
+      PROD: "FoodSalesPRODTName"
       TEST: "FoodSalesTESTName"
     item_type: "Report"
