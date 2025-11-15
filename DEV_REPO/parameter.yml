@@ -4,3 +4,22 @@ key_value_replace:
       PROD: "FoodSalesPRODTName"
       TEST: "FoodSalesTESTName"
     item_type: "Report"
+
+find_replace:
+  - find_value: "59c7187a-f6a9-4486-b4d6-740b0dab5028"
+    replace_value:
+      PROD: "805ae812-074e-4090-bbba-d25165fa8964"
+      TEST: "805ae812-074e-4090-bbba-d25165fa8964"
+  - find_value: "testLakehouse1"
+    replace_value:
+      PROD: "testLakehouse2"
+      TEST: "testLakehouse2"
+    file_path:
+      - "ntTestChangeFromLH1toLH2PythonCICD.Notebook/notebook-content.py"
+
+  # Notebook2 - dynamic replacement to new lakehouse
+  - find_value: "59c7187a-f6a9-4486-b4d6-740b0dab5028"
+    replace_value:
+      PROD: "$items.Lakehouse.testLakehouse1.$id"
+      TEST: "$items.Lakehouse.testLakehouse1.$id"
+    file_path:
