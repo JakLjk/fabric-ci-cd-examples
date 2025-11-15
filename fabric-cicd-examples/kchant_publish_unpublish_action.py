@@ -10,7 +10,7 @@ parser.add_argument('--ItemsInScope', type=str)
 args = parser.parse_args()
 
 
-allitems = args.ItemsInCope
+allitems = args.ItemsInScope
 item_type_in_scope = allitems.split(",")
 print(f"Items in scope: {str(item_type_in_scope)}")
 
