@@ -29,5 +29,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: simple-pipeline-test-results
-          path: '**.simple-*.xml'
+          path: simple-pipeline-test-results.xml
 
