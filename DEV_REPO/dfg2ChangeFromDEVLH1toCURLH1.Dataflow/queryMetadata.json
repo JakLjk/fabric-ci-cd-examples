@@ -1,23 +1,23 @@
 {
   "formatVersion": "202502",
   "computeEngineSettings": {},
-  "name": "testDataflow1",
+  "name": "dfg2ChangeFromDEVLH1toCURLH1",
   "queryGroups": [],
   "documentLocale": "en-US",
   "queriesMetadata": {
     "Query": {
-      "queryId": "f98a6dfd-9255-4639-a4e9-f2a0854ecdf1",
+      "queryId": "cd8ba018-fe7e-4f5a-b76a-c9f98d633084",
       "queryName": "Query",
       "loadEnabled": false
     },
     "Query_DataDestination": {
-      "queryId": "2bfbfb38-13d9-4794-aace-d022288d21a8",
+      "queryId": "3a036861-4ddf-4ed4-8ac1-846e8371ddfd",
       "queryName": "Query_DataDestination",
       "isHidden": true,
       "loadEnabled": false
     },
     "Query_DataDestinationTransform": {
-      "queryId": "eacaaef8-82f9-42a5-9e2b-a737a3208df0",
+      "queryId": "fa8124c4-caa6-4d04-a3d1-7af091f14eb2",
       "queryName": "Query_DataDestinationTransform",
       "isHidden": true,
       "loadEnabled": false
@@ -25,9 +25,9 @@
   },
   "connections": [
     {
-      "path": "https://raw.githubusercontent.com/TheKivs/Bike-Rentals/refs/heads/master/bikes.csv",
+      "path": "https://raw.githubusercontent.com/gsscala/bike-rental-model/refs/heads/main/daily-bike-share.csv",
       "kind": "Web",
-      "connectionId": "{\"ClusterId\":\"a65c84b0-dfd4-456d-9079-fdebc1a63f50\",\"DatasourceId\":\"e721b2ae-92ff-4084-b5f0-ce9e0dbd997d\"}"
+      "connectionId": "{\"ClusterId\":\"a65c84b0-dfd4-456d-9079-fdebc1a63f50\",\"DatasourceId\":\"dd8d30c1-af47-43bc-8cd4-80a908cb166b\"}"
     },
     {
       "path": "Lakehouse",

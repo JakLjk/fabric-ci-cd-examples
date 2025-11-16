@@ -1,24 +1,18 @@
 {
   "formatVersion": "202502",
   "computeEngineSettings": {},
-  "name": "testDataflow2_ExternalSource",
+  "name": "dfg2ChangeFromDEVLH2toCURLH2_SourceStaysTheSame",
   "queryGroups": [],
   "documentLocale": "en-US",
   "queriesMetadata": {
     "Trip": {
-      "queryId": "942784ac-1115-4331-9d3b-5f03d4b1c5c5",
+      "queryId": "08e79a2a-6f69-4425-b16f-6a036d98118a",
       "queryName": "Trip",
       "loadEnabled": false
     },
     "Trip_DataDestination": {
-      "queryId": "f9779732-1bdd-4829-9bd4-55e532bc2c8a",
+      "queryId": "60eb9b89-79c3-4178-85c5-cf8f2c8724c1",
       "queryName": "Trip_DataDestination",
-      "isHidden": true,
-      "loadEnabled": false
-    },
-    "Trip_DataDestinationTransform": {
-      "queryId": "be5c44fe-e0d5-4c94-8b92-3900bcad0261",
-      "queryName": "Trip_DataDestinationTransform",
       "isHidden": true,
       "loadEnabled": false
     }

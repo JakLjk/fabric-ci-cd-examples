@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "Notebook",
-    "displayName": "testNotebook"
+    "displayName": "ntChangeFromDEVLH2toCURRLH2"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "9e4bc360-70e4-8850-41c2-cec36e70c31b"
+    "logicalId": "b44b3940-41db-870e-42e6-9e6494b3dfa3"
   }
 }

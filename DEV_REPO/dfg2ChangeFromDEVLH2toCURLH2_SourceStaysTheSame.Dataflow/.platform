@@ -1,11 +1,11 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
-    "type": "Notebook",
-    "displayName": "ntTestChangeFromLH1toLH2PythonCICD"
+    "type": "Dataflow",
+    "displayName": "dfg2ChangeFromDEVLH2toCURLH2_SourceStaysTheSame"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "b8dc9c1f-d212-bce8-4615-c5497f88eb83"
+    "logicalId": "10b4b466-8c3c-b41e-4560-5e04d7563009"
   }
 }

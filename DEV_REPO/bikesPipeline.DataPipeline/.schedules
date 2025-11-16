@@ -6,10 +6,10 @@
       "jobType": "Execute",
       "configuration": {
         "type": "Cron",
-        "startDateTime": "2025-11-12T19:53:00",
-        "endDateTime": "2025-11-30T19:53:00",
+        "startDateTime": "2025-11-15T10:52:00",
+        "endDateTime": "2025-11-30T10:52:00",
         "localTimeZoneId": "Romance Standard Time",
-        "interval": 30
+        "interval": 15
       }
     }
   ]

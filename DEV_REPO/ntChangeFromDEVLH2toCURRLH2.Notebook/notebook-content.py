@@ -8,12 +8,12 @@
 # META   },
 # META   "dependencies": {
 # META     "lakehouse": {
-# META       "default_lakehouse": "59c7187a-f6a9-4486-b4d6-740b0dab5028",
-# META       "default_lakehouse_name": "testLakehouse1",
+# META       "default_lakehouse": "805ae812-074e-4090-bbba-d25165fa8964",
+# META       "default_lakehouse_name": "testLakehouse2",
 # META       "default_lakehouse_workspace_id": "0b757bbc-b963-4071-9c9e-b2799e4ba796",
 # META       "known_lakehouses": [
 # META         {
-# META           "id": "59c7187a-f6a9-4486-b4d6-740b0dab5028"
+# META           "id": "805ae812-074e-4090-bbba-d25165fa8964"
 # META         }
 # META       ]
 # META     }
@@ -24,7 +24,7 @@
 
 # Welcome to your new notebook
 # Type here in the cell editor to add code!
-df = spark.read.format("csv").load("Files/bikes.csv")
+df = spark.read.table("bikesFromDataflowLH2")
 
 # METADATA ********************
 
@@ -35,7 +35,20 @@ df = spark.read.format("csv").load("Files/bikes.csv")
 
 # CELL ********************
 
-df.write.format("delta").saveAsTable("testNotebookOutputTable")
+from pyspark.sql.functions import col, expr
+
+df = df.withColumn("fullDateInt", (col("year")*10000 + col("mnth")*100 + col("day")))
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+df.write.format("delta").mode("append").saveAsTable("bikesFromNotebook")
 
 # METADATA ********************
 
