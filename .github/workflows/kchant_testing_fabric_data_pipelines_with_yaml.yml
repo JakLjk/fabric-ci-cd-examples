@@ -1,6 +1,5 @@
 name: Test Fabric Data Pipelines
-on: workflow-dispatch
-
+on: workflow_dispatch
 jobs:
   test-dp:
     name: Test Data Pipeline
