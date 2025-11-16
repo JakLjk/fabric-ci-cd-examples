@@ -31,5 +31,5 @@ def test_directory_parameter(request: pytest.FixtureRequest, pipeline: Pipeline)
     # Assert to check correct directory name is used
     assert (
         activity.type_properties["sink"]["datasetSettings"]["typeProperties"]["location"]["folderPath"].result
-        == "SampleData"
+        == "SampleData2"
     )
