@@ -77,6 +77,11 @@ jobs:
           Connect-AzAccount -ServicePrincipal -Credential $pscredential -Tenant ${{secrets.AZURE_TENANT_ID}}
           $fabricToken = (Get-AzAccessToken -ResourceUrl ${{env.resourceUrl}}).Token
 
+      - name: Login to Fab cli using service pricipal
+        run: |
+          fab auth login -u ${{secret.AZURE_CLIENT_ID}} -p ${{secret.AZURE_CLIENT_SECRET}} --tenant ${{secret.AZURE_TENANT_ID}}
+
+
       - name: Run script to deploy with fabric-cicd to Test
         run: |
           python fabric-cicd-examples/kchant_publish_unpublish_action.py --WorkspaceId ${{vars.ProdWorkspace}} --Environment "PROD" --RepositoryDirectory ".\DEV_REPO" --ItemsInScope ${{vars.ItemsInScope}}
