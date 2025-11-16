@@ -1,0 +1,135 @@
+name: Fabric CI/CD
+
+on:
+  workflow_dispatch:  # manual trigger; similar to "trigger: none"
+
+jobs:
+  test-dp:
+    name: Test Data Pipeline
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install necessary libraries
+        shell: pwsh
+        run: |
+          pip install data-factory-testing-framework
+          pip install pytest
+
+      - name: Run sample pipeline test
+        shell: pwsh
+        run: |
+          pytest Tests\simple-pipeline-tests.py --junitxml=simple-pipeline-test-results.xml
+
+      - name: Upload Pipeline Test Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: simple-pipeline-test-results
+          path: '**/simple-*.xml'
+
+  deploy-test:
+    name: Deploy to Test
+    runs-on: windows-latest
+    needs: test-dp
+
+    env:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      resourceUrl: ${{ vars.RESOURCE_URL }}          # e.g. https://api.fabric.microsoft.com
+      TestWorkspace: ${{ vars.TEST_WORKSPACE }}
+      ItemsInScope: ${{ vars.ITEMS_IN_SCOPE }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install necessary libraries
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip
+          pip install fabric-cicd
+
+      - name: Authenticate as Service Principal
+        shell: pwsh
+        run: |
+          Install-Module -Name Az.Accounts -AllowClobber -Force
+
+          $SecureStringPwd = ConvertTo-SecureString $env:AZURE_CLIENT_SECRET -AsPlainText -Force
+          $pscredential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $env:AZURE_CLIENT_ID, $SecureStringPwd
+                            
+          Connect-AzAccount -ServicePrincipal -Credential $pscredential -Tenant $env:AZURE_TENANT_ID
+
+          $fabricToken = (Get-AzAccessToken -ResourceUrl $env:resourceUrl).Token
+
+      - name: Deploy to Test with fabric-cicd
+        shell: pwsh
+        run: |
+          python auth_spn_secret_AzDo.py `
+            --WorkspaceId $env:TestWorkspace `
+            --Environment "Test" `
+            --RepositoryDirectory "$env:GITHUB_WORKSPACE\workspace" `
+            --ItemsInScope $env:ItemsInScope
+
+  deploy-prod:
+    name: Deploy to Production
+    runs-on: windows-latest
+    needs: deploy-test
+    environment: production
+
+    env:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      resourceUrl: ${{ vars.RESOURCE_URL }}
+      ProdWorkspace: ${{ vars.PROD_WORKSPACE }}
+      ItemsInScope: ${{ vars.ITEMS_IN_SCOPE }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install necessary libraries
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip
+          pip install fabric-cicd
+          pip install azure-identity
+
+      - name: Authenticate as Service Principal
+        shell: pwsh
+        run: |
+          Install-Module -Name Az.Accounts -AllowClobber -Force
+
+          $SecureStringPwd = ConvertTo-SecureString $env:AZURE_CLIENT_SECRET -AsPlainText -Force
+          $pscredential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $env:AZURE_CLIENT_ID, $SecureStringPwd
+                            
+          Connect-AzAccount -ServicePrincipal -Credential $pscredential -Tenant $env:AZURE_TENANT_ID
+
+          $fabricToken = (Get-AzAccessToken -ResourceUrl $env:resourceUrl).Token
+
+      - name: Deploy to Prod with fabric-cicd
+        shell: pwsh
+        run: |
+          python auth_spn_secret_AzDo.py `
+            --WorkspaceId $env:ProdWorkspace `
+            --Environment "Prod" `
+            --RepositoryDirectory "$env:GITHUB_WORKSPACE\workspace" `
+            --ItemsInScope $env:ItemsInScope
