@@ -39,6 +39,16 @@ jobs:
         run: |
           python fabric-cicd-examples/kchant_publish_unpublish_action.py --WorkspaceId ${{vars.TestWorkspace}} --Environment "TEST" --RepositoryDirectory ".\DEV_REPO" --ItemsInScope ${{vars.ItemsInScope}}
 
+
+      - name: Install Fabric-cli library
+        run: |
+          pip install ms-fabric-cli
+
+      - name: Run Scripts Loading Data into Workspace's Data Store Artifacts
+        run: fab job run ${{vars.TESTENV}}.Workspace/integrationFolder.Folder/populateLakehouse.Notebook
+
+
+
   'Deploy_to_Prod':
     # I use a GitHub-Hosted runner here, you can opt to use a self-hosted one instead
     runs-on: windows-latest
