@@ -6,10 +6,11 @@ find_replace:
   - find_value: 0deae9ed-d481-46ac-bc87-2e0ec43d37f2
     replace_value:
       __ALL__: $items.Laheouse.testLakehouse3.$id
-    item_name: 
+    item_name: ["populateLakehouse", "testLakehouse3"]
   - find_value: 0b757bbc-b963-4071-9c9e-b2799e4ba796
     replace_value:
       __ALL__: $workspace.$id
+    item_name: ["populateLakehouse", "testLakehouse3"]
 
 
 
