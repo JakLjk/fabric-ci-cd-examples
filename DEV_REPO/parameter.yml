@@ -1,25 +1,97 @@
-key_value_replace:
-  - find_key: "$.metadata.displayName"
-    replace_value:
-      PROD: "FoodSalesPRODTName"
-      TEST: "FoodSalesTESTName"
-    item_type: "Report"
+
 
 find_replace:
-  - find_value: "59c7187a-f6a9-4486-b4d6-740b0dab5028"
+  # Replace workspace id for dataflow Sink
+  - find_value: Navigation_1\s*=\s*Pattern\{\[workspaceId\s*=\s*"([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})"\]\}
     replace_value:
-      PROD: "805ae812-074e-4090-bbba-d25165fa8964"
-      TEST: "805ae812-074e-4090-bbba-d25165fa8964"
-  - find_value: "testLakehouse1"
-    replace_value:
-      PROD: "testLakehouse2"
-      TEST: "testLakehouse2"
-    file_path:
-      - "ntTestChangeFromLH1toLH2PythonCICD.Notebook/notebook-content.py"
+      TEST: $workspace.id
+      PROD: $workspace.id
+    is_regex: "true"
+    item_name: ["dfg2ChangeFromDEVLH1_2toCURLH1_2", "dfg2ChangeFromDEVLH1toCURLH1", "dfg2ChangeFromDEVLH2toCURLH2_SourceStaysTheSame"]
 
-  # Notebook2 - dynamic replacement to new lakehouse
-  - find_value: "59c7187a-f6a9-4486-b4d6-740b0dab5028"
+
+
+  # Change Lakehouse Sink For dfg2ChangeFromDEVLH1toCURLH1
+  - find_value: Navigation_2\s*=\s*Navigation_1\{\[lakehouseId\s*=\s*"([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})"\]\}
     replace_value:
-      PROD: "$items.Lakehouse.testLakehouse1.$id"
-      TEST: "$items.Lakehouse.testLakehouse1.$id"
-    file_path:
+      TEST: $items.Lakehouse.testLakehouse1.$id
+      PROD: $items.Lakehouse.testLakehouse1.$id
+    is_regex: "true"
+    item_name: ["dfg2ChangeFromDEVLH1toCURLH1"]
+
+  # Change Lakehouse Sink For dfg2ChangeFromDEVLH1_2toCURLH1_2
+  - find_value: Navigation_2\s*=\s*Navigation_1\{\[lakehouseId\s*=\s*"([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})"\]\}
+    replace_value:
+      TEST: $items.Lakehouse.testLakehouse2.$id
+      PROD: $items.Lakehouse.testLakehouse2.$id
+    is_regex: "true"
+    item_name: ["dfg2ChangeFromDEVLH1_2toCURLH1_2", "dfg2ChangeFromDEVLH2toCURLH2_SourceStaysTheSame"]
+
+
+
+    # Change Workspace Source For dfg2ChangeFromDEVLH1_2toCURLH1_2
+  - find_value: Navigation\s*=\s*Source\{\[workspaceId\s*=\s*"([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})"\]\}
+    replace_value:
+      TEST: $workspace.id
+      PROD: $workspace.id
+    is_regex: "true"
+    item_name: ["dfg2ChangeFromDEVLH1_2toCURLH1_2"]
+
+  # Change Lakehouse Source For dfg2ChangeFromDEVLH1_2toCURLH1_2
+  - find_value: Navigation 1"\s*=\s*Navigation\{\[lakehouseId\s*=\s*"([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})"\]\}\[Data\]
+    replace_value:
+      TEST: $items.Lakehouse.testLakehouse1.$id
+      PROD: $items.Lakehouse.testLakehouse1.$id
+    is_regex: "true"
+    item_name: ["dfg2ChangeFromDEVLH1_2toCURLH1_2"]
+
+
+
+  # Replace notebook lakehouse id
+  - find_value: 805ae812-074e-4090-bbba-d25165fa8964
+    replace_value:
+      TEST: $items.Lakehouse.testLakehouse2.$id
+      PROD: $items.Lakehouse.testLakehouse2.$id
+    item_type: "Notebook"
+
+  # Replace notebook lakehouse's workspace id
+  - find_value: 0b757bbc-b963-4071-9c9e-b2799e4ba796
+    replace_value:
+      TEST: $workspace.$id
+      PROD: $workspace.$id
+    item_type: "Notebook"
+
+
+
+
+
+
+
+# key_value_replace:
+#   # Change Dataflow for copyBikes
+#   - find_key: $.properties.activities[?(@.name=="copyBikesToLH1")].typeProperties.dataflowId
+#     replace_value:
+#       TEST: $items.Dataflow.dfg2ChangeFromDEVLH1toCURLH1.$id
+#       PROD: $items.Dataflow.dfg2ChangeFromDEVLH1toCURLH1.$id
+#     item_name: "bikesPipeline"
+
+#   # Change Dataflow for CobyPikesFromLH1toLH2
+#   - find_key: $.properties.activities[?(@.name=="copyBikesFromLH1toLH2")].typeProperties.dataflowId
+#     replace_value:
+#       TEST: $items.Dataflow.dfg2ChangeFromDEVLH1_2toCURLH1_2.$id
+#       PROD: $items.Dataflow.dfg2ChangeFromDEVLH1_2toCURLH1_2.$id
+#     item_name: "bikesPipeline"
+
+#   # Change notebook id 
+#   - find_key: $.properties.activities[?(@.name=="transformBikesTableInLH2")].typeProperties.notebookId
+#     replace_value:
+#       TEST: $items.Notebook.ntChangeFromDEVLH2toCURRLH2.$id
+#       PROD: $items.Notebook.ntChangeFromDEVLH2toCURRLH2.$id
+#     item_name: "bikesPipeline"
+
+#   # Change wrkspaceId for all elements in data pipeline
+#   - find_key: $.properties.activities.typeProperties.workspaceId
+#     replace_value:
+#       TEST: $workspace.$id
+#       PROD: $workspace.$id
+#     item_type: "DataPipeline"

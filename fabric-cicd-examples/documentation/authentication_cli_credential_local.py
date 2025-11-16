@@ -6,13 +6,13 @@ from azure.identity import AzureCliCredential
 from fabric_cicd import FabricWorkspace, publish_all_items, unpublish_all_orphan_items
 
 # Assumes your script is one level down from root
-root_directory = Path(__file__).resolve().parent.parent
+root_directory = Path(__file__).resolve().parent.parent.parent
 
 # Sample values for FabricWorkspace parameters
-workspace_id = "cffea74c-18ab-43ae-b8be-edcf30ced68e"
+workspace_id = "540b2074-2543-4a80-bdcc-936614f9d843"
 environment = "TEST"
 repository_directory = str(root_directory / "DEV_REPO")
-item_type_in_scope = ["Notebook", "DataPipeline", "Environment", "SemanticModel", "Report"]
+item_type_in_scope = ["Notebook", "DataPipeline", "Environment", "SemanticModel", "Report", "Dataflow", "Lakehouse"]
 
 # Use Azure CLI credential to authenticate
 token_credential = AzureCliCredential()

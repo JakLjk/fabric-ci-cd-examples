@@ -1,15 +1,27 @@
-2025-11-12 14:18:28,801 - INFO - fabric_cicd._common._fabric_endpoint - Executing as User 'testeusz@lejk.uk'
-2025-11-12 14:18:28,817 - INFO - fabric_cicd._parameter._parameter - Parameter file validation passed
-2025-11-12 14:18:30,327 - INFO - fabric_cicd.fabric_workspace - Publishing Workspace Folders
-2025-11-12 14:18:30,327 - INFO - fabric_cicd.fabric_workspace - ->Published
-2025-11-12 14:18:31,099 - INFO - fabric_cicd.fabric_workspace - Publishing Notebook 'Notebook_1'
-2025-11-12 14:18:31,816 - INFO - fabric_cicd._common._fabric_endpoint - ->Item name is reserved. Checking again in 60 seconds (Attempt 1)...
-2025-11-12 14:19:36,031 - INFO - fabric_cicd.fabric_workspace - ->Published
-2025-11-12 14:19:36,048 - INFO - fabric_cicd.fabric_workspace - Publishing SemanticModel 'FoodSales'
-2025-11-12 14:19:38,362 - INFO - fabric_cicd._common._fabric_endpoint - ->->Operation in progress. Checking again in 1 second (Attempt 1)...
-2025-11-12 14:19:39,952 - INFO - fabric_cicd._common._fabric_endpoint - ->->Operation in progress. Checking again in 2 seconds (Attempt 2)...
-2025-11-12 14:19:42,577 - INFO - fabric_cicd._common._fabric_endpoint - ->->Operation in progress. Checking again in 4 seconds (Attempt 3)...
-2025-11-12 14:19:47,219 - INFO - fabric_cicd._common._fabric_endpoint - ->->Operation in progress. Checking again in 8 seconds (Attempt 4)...
-2025-11-12 14:19:56,543 - INFO - fabric_cicd.fabric_workspace - ->Published
-2025-11-12 14:19:57,620 - INFO - fabric_cicd.fabric_workspace - Publishing Report 'FoodSales'
-2025-11-12 14:20:03,766 - INFO - fabric_cicd.fabric_workspace - ->Published
+2025-11-16 13:40:41,807 - INFO - fabric_cicd._common._fabric_endpoint - Executing as User 'testeusz@lejk.uk'
+2025-11-16 13:40:41,861 - INFO - fabric_cicd._parameter._parameter - Parameter file validation passed
+2025-11-16 13:40:43,518 - INFO - fabric_cicd.fabric_workspace - Publishing Workspace Folders
+2025-11-16 13:40:43,518 - INFO - fabric_cicd.fabric_workspace - ->Published
+2025-11-16 13:40:47,727 - INFO - fabric_cicd.fabric_workspace - Publishing Lakehouse 'testLakehouse1'
+2025-11-16 13:40:50,153 - INFO - fabric_cicd._items._lakehouse - ->SQL Endpoint provisioned successfully
+2025-11-16 13:40:50,153 - INFO - fabric_cicd._items._lakehouse - ->Published
+2025-11-16 13:40:50,153 - INFO - fabric_cicd.fabric_workspace - Publishing Lakehouse 'testLakehouse2'
+2025-11-16 13:40:52,196 - INFO - fabric_cicd._items._lakehouse - ->SQL Endpoint provisioned successfully
+2025-11-16 13:40:52,196 - INFO - fabric_cicd._items._lakehouse - ->Published
+2025-11-16 13:40:52,206 - INFO - fabric_cicd._items._environment - Checking Environment Publish State for ['env']
+2025-11-16 13:40:53,017 - INFO - fabric_cicd.fabric_workspace - Publishing Environment 'env'
+2025-11-16 13:40:54,967 - INFO - fabric_cicd._items._environment - ->Updated Spark Settings
+2025-11-16 13:40:57,220 - INFO - fabric_cicd._items._environment - ->Publish Submitted
+2025-11-16 13:41:01,520 - INFO - fabric_cicd.fabric_workspace - Publishing Notebook 'ntChangeFromDEVLH2toCURRLH2'
+2025-11-16 13:41:04,763 - INFO - fabric_cicd.fabric_workspace - ->Published
+2025-11-16 13:41:08,895 - INFO - fabric_cicd.fabric_workspace - Publishing Dataflow 'dfg2ChangeFromDEVLH1toCURLH1'
+2025-11-16 13:41:11,350 - INFO - fabric_cicd.fabric_workspace - ->Published
+2025-11-16 13:41:19,442 - INFO - fabric_cicd.fabric_workspace - Publishing Dataflow 'dfg2ChangeFromDEVLH1_2toCURLH1_2'
+2025-11-16 13:41:21,887 - INFO - fabric_cicd.fabric_workspace - ->Published
+2025-11-16 13:41:25,991 - INFO - fabric_cicd.fabric_workspace - Publishing Dataflow 'dfg2ChangeFromDEVLH2toCURLH2_SourceStaysTheSame'
+2025-11-16 13:41:28,654 - INFO - fabric_cicd.fabric_workspace - ->Published
+2025-11-16 13:41:32,854 - INFO - fabric_cicd.fabric_workspace - Publishing DataPipeline 'bikesPipeline'
+2025-11-16 13:41:35,926 - INFO - fabric_cicd.fabric_workspace - ->Published
+2025-11-16 13:41:35,926 - INFO - fabric_cicd._items._environment - Checking Environment Publish State for ['env']
+2025-11-16 13:41:36,747 - INFO - fabric_cicd._items._environment - ->Published.
+2025-11-16 13:41:40,870 - WARNING - fabric_cicd.publish - Skipping unpublish for Lakehouse items because the 'enable_lakehouse_unpublish' feature flag is not enabled.
