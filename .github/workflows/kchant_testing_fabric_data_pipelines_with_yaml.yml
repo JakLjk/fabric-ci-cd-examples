@@ -28,6 +28,6 @@ jobs:
       - name: Upload Pipeline Test Results
         uses: actions/upload-artifact@v4
         with:
-          name: simple-pipeline-test-Results
+          name: simple-pipeline-test-results
           path: '**.simple-*.xml'
 
