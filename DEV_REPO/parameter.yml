@@ -65,14 +65,14 @@ find_replace:
     replace_value:
       TEST: $items.Lakehouse.testLakehouse2.$id
       PROD: $items.Lakehouse.testLakehouse2.$id
-    item_type: "Notebook"
+    item_name: ["ntChangeFromDEVLH2toCURRLH2"]
 
   # Replace notebook lakehouse's workspace id
   - find_value: 0b757bbc-b963-4071-9c9e-b2799e4ba796
     replace_value:
       TEST: $workspace.$id
       PROD: $workspace.$id
-    item_type: "Notebook"
+    item_name: ["ntChangeFromDEVLH2toCURRLH2"]
 
 
     # Replace Power BI Text
