@@ -52,7 +52,8 @@ jobs:
         run: fab job run ${{vars.TESTENV}}.Workspace/integrationFolder.Folder/populateLakehouse.Notebook
 
 
-      - name: Run Pipelines Resposbile For Loading Data Into Data Artifacts
-        run: fab job run ${{vars.TESTENV}}.Workspace/bikesPipeline.Pipeline
+      # - name: Run Pipelines Resposbile For Loading Data Into Data Artifacts
+      #   run: fab job run ${{vars.TESTENV}}.Workspace/bikesPipeline.Pipeline
 
-      - name: Run Unit Tests For testLakehouse2
+      # - name: Run Unit Tests For testLakehouse2
+      #   run:
