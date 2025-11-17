@@ -50,3 +50,9 @@ jobs:
 
       - name: Run Scripts Loading Data into Workspace's Data Store Artifacts
         run: fab job run ${{vars.TESTENV}}.Workspace/integrationFolder.Folder/populateLakehouse.Notebook
+
+
+      - name: Run Pipelines Resposbile For Loading Data Into Data Artifacts
+        run: fab job run ${{vars.TESTENV}}.Workspace/bikesPipeline.Pipeline
+
+      - name: Run Unit Tests For testLakehouse2
