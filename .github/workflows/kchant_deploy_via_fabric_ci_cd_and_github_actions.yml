@@ -44,6 +44,10 @@ jobs:
         run: |
           pip install ms-fabric-cli
 
+      - name: Login to Fab cli using service pricipal
+        run: |
+          fab auth login -u ${{secrets.AZURE_CLIENT_ID}} -p ${{secrets.AZURE_CLIENT_SECRET}} --tenant ${{secrets.AZURE_TENANT_ID}}
+
       - name: Run Scripts Loading Data into Workspace's Data Store Artifacts
         run: fab job run ${{vars.TESTENV}}.Workspace/integrationFolder.Folder/populateLakehouse.Notebook
 
@@ -76,11 +80,6 @@ jobs:
 
           Connect-AzAccount -ServicePrincipal -Credential $pscredential -Tenant ${{secrets.AZURE_TENANT_ID}}
           $fabricToken = (Get-AzAccessToken -ResourceUrl ${{env.resourceUrl}}).Token
-
-      - name: Login to Fab cli using service pricipal
-        run: |
-          fab auth login -u ${{secrets.AZURE_CLIENT_ID}} -p ${{secrets.AZURE_CLIENT_SECRET}} --tenant ${{secrets.AZURE_TENANT_ID}}
-
 
       - name: Run script to deploy with fabric-cicd to Test
         run: |
